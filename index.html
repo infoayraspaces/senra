@@ -343,36 +343,53 @@
     }
     /* ════════════════ RESPONSIVE MÓVIL (≤ 768px) ════════════════ */
     @media (max-width: 768px) {
-      /* 1. Hero título — sin corte */
+      /* ── Ocultar en móvil ── */
+      .hero-eyebrow  { display: none; }          /* "ELÉCTRICA · URBANA · COLOMBIANA" */
+      .hero-tagline  { display: none; }          /* "THE FUTURE MOVES SILENTLY" */
+      .btn-ver-precio { display: none; }         /* botón "Ver precio" */
+      .hstat-d       { display: none; }          /* stats 800W y DISCO */
+
+      /* 1. Hero título — completo sin corte */
       .hero-title {
-        font-size: clamp(2.5rem, 13vw, 4rem);
-        letter-spacing: -.02em;
+        font-size: clamp(2.8rem, 13vw, 8rem);
+        letter-spacing: -.025em;
+        margin-bottom: 16px;
       }
 
-      /* 2. Subtítulo y descripción */
-      .hero-sub { max-width: 100%; font-size: 15px; }
-      /* Padding inferior mayor para que el contenido no quede debajo de 2 filas de stats */
-      .hero-content { padding: 0 20px 160px; }
+      /* 2. Subtítulo — máx 2 líneas */
+      .hero-sub {
+        max-width: 100%;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 24px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
 
-      /* 3. Video hero: 100svh elimina el salto con la barra del navegador */
+      /* Padding inferior = altura 2 filas de stats (≈ 130px) + margen */
+      .hero-content { padding: 0 20px 145px; }
+
+      /* 3. Video hero: 100svh = sin salto con barra del navegador */
       #hero { height: 100svh; min-height: unset; }
 
-      /* 4. Stats bar — grid 3 cols × 2 filas */
+      /* 4. Stats bar — 4 items visibles en grid 2×2 */
       .hero-stats { flex-wrap: wrap; }
-      .hstat { flex: 0 0 33.333%; padding: 12px 4px; }
-      /* Borde inferior solo en la primera fila (items 1-3) */
-      .hstat:nth-child(-n+3) { border-bottom: 1px solid var(--bdr); }
-      /* Sin borde derecho en el último de cada fila (3ro y 6to) */
-      .hstat:nth-child(3n) { border-right: none; }
+      .hstat { flex: 0 0 50%; padding: 14px 4px; border-bottom: 1px solid var(--bdr); }
+      /* Sin borde derecho en columna derecha (items 2 y 5 en DOM = posiciones 2 y 4 visibles) */
+      .hstat:nth-child(2), .hstat:nth-child(5) { border-right: none; }
+      /* Sin borde inferior en fila inferior (items 3 y 5 visibles = DOM 3 y 5) */
+      .hstat:nth-child(3), .hstat:nth-child(5) { border-bottom: none; }
 
-      /* 5. Botones — stack vertical, ancho completo */
+      /* 5. Botones — solo "Reservar", ancho completo */
       .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
       .hero-actions .btn-lg { justify-content: center; }
 
-      /* 6. Nav — botón más compacto en móvil */
+      /* 6. Nav — botón más compacto */
       nav .btn { padding: 9px 16px; font-size: 12px; }
 
-      /* 7. Precio — reducir tamaño para que no desborde */
+      /* 7. Precio — sin desborde */
       .precio-amt { font-size: clamp(2.2rem, 9vw, 3.5rem); }
       .precio-perks { flex-direction: column; align-items: center; gap: 10px; }
       .precio-badge { font-size: 10px; padding: 8px 14px; letter-spacing: .08em; }
@@ -413,7 +430,7 @@
     <p class="hero-tagline">The future moves silently</p>
     <div class="hero-actions">
       <a href="#reservar" class="btn btn-pur btn-lg">Reservar en preventa</a>
-      <a href="#precio" class="btn btn-out btn-lg">Ver precio</a>
+      <a href="#precio" class="btn btn-out btn-lg btn-ver-precio">Ver precio</a>
     </div>
   </div>
 
@@ -431,7 +448,7 @@
       <div class="hstat-n">2<sup>h</sup></div>
       <div class="hstat-l">Carga rápida</div>
     </div>
-    <div class="hstat">
+    <div class="hstat hstat-d">
       <div class="hstat-n">800<sup>W</sup></div>
       <div class="hstat-l">Motor</div>
     </div>
@@ -439,7 +456,7 @@
       <div class="hstat-n">LITIO</div>
       <div class="hstat-l">Batería extraíble</div>
     </div>
-    <div class="hstat">
+    <div class="hstat hstat-d">
       <div class="hstat-n">DISCO</div>
       <div class="hstat-l">Frenos del. y tras.</div>
     </div>
